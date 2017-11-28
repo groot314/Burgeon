@@ -8,6 +8,13 @@ public:
 		this->setFillColor(sf::Color::Red);
 	}
 
-private:
+	void control();
 
+	void isHit();
+	void gotLog();
+	void shot();
+
+private:
+	int moveX;
+	int moveY;
 };
