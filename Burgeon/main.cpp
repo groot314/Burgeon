@@ -5,7 +5,7 @@ int main(void)
 {
 	sf::RenderWindow window(sf::VideoMode(750, 750), "Burgeon");
 	
-	GameWrapper gw;
+	GameWrapper gw(window);
 
 	while (window.isOpen())
 	{

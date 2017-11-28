@@ -1,9 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include "Player.h"
 
 class GameWrapper {
 
 public:
-	GameWrapper();
+	GameWrapper(sf::RenderWindow &window) {
+		player = Player(window, { 300,300 });//init player
+	}
 
 	void update(sf::RenderWindow &window);
 	void render(sf::RenderWindow &window);
@@ -11,5 +14,5 @@ public:
 	~GameWrapper();
 
 private:
-	
+	Player player;
 };

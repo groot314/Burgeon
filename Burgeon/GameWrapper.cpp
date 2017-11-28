@@ -1,9 +1,5 @@
 #include "GameWrapper.h"
 
-GameWrapper::GameWrapper()
-{
-}
-
 void GameWrapper::update(sf::RenderWindow & window)
 {
 	sf::Event event;
@@ -17,7 +13,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 void GameWrapper::render(sf::RenderWindow & window)
 {
 	window.clear();
-	//draw objects
+	window.draw(player);
 	window.display();
 }
 
