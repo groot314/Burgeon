@@ -8,9 +8,11 @@ public:
 
 	Log(sf::RenderWindow & window);
 
+	void respawnLog();
+
 	bool checkPlayerCollison(Player &player);
 
 
 private:
-
+	sf::Vector2u windowSize;
 };
