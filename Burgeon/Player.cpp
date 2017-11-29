@@ -5,7 +5,7 @@
 Player::Player(sf::RenderWindow & window, sf::Vector2f pos):CircleShape(50) {
 	this->setPosition(pos);
 	this->setFillColor(sf::Color::Red);
-	this->setSpeed(.0625);
+	this->setSpeed(1.75);
 
 	windowSize = window.getSize();
 }
@@ -35,13 +35,13 @@ void Player::controlMovement(sf::RenderWindow &window)
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//right
-		if (this->getPosition().x <= window.getSize().x - 100)
+		if (this->getPosition().x <= window.getSize().x - (this->getRadius()))
 		{
 			this->move(1 * speed, 0 * speed);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//down
-		if ( this->getPosition().y <= window.getSize().y-100)
+		if ( this->getPosition().y <= window.getSize().y- (this->getRadius()))
 		{
 			this->move(0 * speed, 1 * speed);
 		}
