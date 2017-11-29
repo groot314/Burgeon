@@ -7,14 +7,15 @@ void GameWrapper::update(sf::RenderWindow & window)
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
+	}
 
-		//player->control();
-		for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
-			fireBalls[i]->movement();
-		}
-		for (int i = 0; i < enemys.size(); i++) {//move all enemeys
-			enemys[i]->movement();
-		}
+
+	player->control();
+	for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
+		fireBalls[i]->movement();
+	}
+	for (int i = 0; i < enemys.size(); i++) {//move all enemeys
+		enemys[i]->movement();
 	}
 }
 
