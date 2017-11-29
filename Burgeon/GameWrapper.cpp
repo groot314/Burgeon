@@ -35,6 +35,9 @@ void GameWrapper::update(sf::RenderWindow & window)
 			Enemy *tempEnemy2 = enemys[i];
 			enemys.erase(enemys.begin() + i);
 			delete tempEnemy2;
+
+			Enemy *newEnemy = new Enemy(window);
+			enemys.push_back(newEnemy);
 		}
 		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
@@ -46,14 +49,21 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 				enemys.erase(enemys.begin() + i);
 				delete tempEnemy;
+
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
 			}		
 		}
-		/*
+		
 		if (enemys[i]->isOutOfBounds()) {
+			Enemy *tempEnemy3 = enemys[i];
+			enemys.erase(enemys.begin() + i);
+			delete tempEnemy3;
+
 			Enemy *newEnemy = new Enemy(window);
 			enemys.push_back(newEnemy);
 		}
-		*/
+		
 	}
 	for (int i = 0; i < logs.size(); i++) {
 		if (logs[i]->checkPlayerCollison(*player)) {
