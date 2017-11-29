@@ -2,6 +2,8 @@
 
 Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 
+	windowSize = window.getSize();
+
 	int edge = rand() % 4;
 	int xPos = (rand() % 100) * window.getSize().x * .01;
 	int yPos = (rand() % 100) * window.getSize().y * .01;
@@ -31,6 +33,18 @@ Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 	}
 
 	this->setFillColor(sf::Color::Blue);
+}
+
+bool Enemy::outOfBounds()
+{
+	if (this->getPosition().x > windowSize.x) {
+		return true;
+	}
+	if (this->getPosition().y > windowSize.y) {
+		return true;
+	}
+
+	return false;
 }
 
 void Enemy::movement()
