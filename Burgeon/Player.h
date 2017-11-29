@@ -6,6 +6,9 @@ class Player : public sf::CircleShape {
 public:
 	Player(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"), sf::Vector2f pos = { 0,0 });
 
+	void setSpeed(double speed);
+	double getSpeed();
+
 	void control();
 
 	void isHit();
@@ -13,5 +16,5 @@ public:
 	void shot();
 
 private:
-
+	double speed;
 };
