@@ -25,20 +25,21 @@ void GameWrapper::update(sf::RenderWindow & window)
 	}
 	for (int i = 0; i < enemys.size(); i++) {//move all enemeys
 		enemys[i]->movement();
-		/*
-		for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
-			if (enemys[i]->checkFireballCollison(*fireBalls[i])) {
-				//delete &fireBalls[i];
-				//delete &enemys[i];
+		
+		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
+			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
+				//delete fireBalls[i];
+				//delete enemys[i];
 			}
 		}
-		*/
+		
 	}
 	for (int i = 0; i < logs.size(); i++) {
 		if (logs[i]->checkPlayerCollison(*player)) {
 			player->gotLog();
+			logs[i]->respawnLog();
 		}
-		logs[i]->respawnLog();
+		
 
 	}
 }
