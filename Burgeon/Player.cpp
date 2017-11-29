@@ -1,5 +1,12 @@
 #include "Player.h"
 
+
+
+Player::Player(sf::RenderWindow & window, sf::Vector2f pos):CircleShape(50) {
+	this->setPosition(pos);
+	this->setFillColor(sf::Color::Red);
+}
+
 void Player::control()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {//up

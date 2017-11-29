@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(sf::RenderWindow & window) {
+Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 
 	int edge = rand() % 4;
 	int xPos = (rand() % 100) * window.getSize().x;
