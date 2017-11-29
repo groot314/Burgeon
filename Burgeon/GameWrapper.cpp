@@ -11,7 +11,6 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 	}
 
-	
 
 
 	player->controlMovement();
@@ -26,8 +25,18 @@ void GameWrapper::update(sf::RenderWindow & window)
 	for (int i = 0; i < enemys.size(); i++) {//move all enemeys
 		enemys[i]->movement();
 		
+		if (enemys[i]->checkPlayerCollision(*player)) {
+			if (!player->isTooSmall()) {
+				player->isHit();
+			}
+			else {
+				//you lose
+			}
+			//delete enemy
+		}
 		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
+
 				//delete fireBalls[i];
 				//delete enemys[i];
 			}
