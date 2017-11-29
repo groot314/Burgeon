@@ -32,17 +32,28 @@ void GameWrapper::update(sf::RenderWindow & window)
 			else {
 				//you lose
 			}
-			//delete enemys[i]
+			Enemy *tempEnemy2 = enemys[i];
+			enemys.erase(enemys.begin() + i);
+			delete tempEnemy2;
 		}
 		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
+				FireBall *tempFire = fireBalls[j];
+				Enemy *tempEnemy = enemys[i];
 
-				//delete fireBalls[i];
-				//delete enemys[i];
-			}
-			//if ()
+				fireBalls.erase(fireBalls.begin() + j);
+				delete tempFire;
+
+				enemys.erase(enemys.begin() + i);
+				delete tempEnemy;
+			}		
 		}
-		
+		/*
+		if (enemys[i]->isOutOfBounds()) {
+			Enemy *newEnemy = new Enemy(window);
+			enemys.push_back(newEnemy);
+		}
+		*/
 	}
 	for (int i = 0; i < logs.size(); i++) {
 		if (logs[i]->checkPlayerCollison(*player)) {
