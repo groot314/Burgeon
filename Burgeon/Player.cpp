@@ -5,7 +5,7 @@
 Player::Player(sf::RenderWindow & window, sf::Vector2f pos):CircleShape(50) {
 	this->setPosition(pos);
 	this->setFillColor(sf::Color::Red);
-	this->setSpeed(.0625);
+	this->setSpeed(1.75);
 
 	windowSize = window.getSize();
 }
