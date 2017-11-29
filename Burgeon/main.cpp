@@ -5,7 +5,9 @@ int main(void)
 {
 	srand(time(NULL));//random
 
-	sf::RenderWindow window(sf::VideoMode(750, 750), "Burgeon");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "Burgeon");
+
+	window.setFramerateLimit(120);
 	
 	GameWrapper gw(window);
 

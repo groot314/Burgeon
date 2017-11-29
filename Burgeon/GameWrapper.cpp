@@ -32,7 +32,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 			else {
 				//you lose
 			}
-			//delete enemy
+			//delete enemys[i]
 		}
 		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
@@ -40,6 +40,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 				//delete fireBalls[i];
 				//delete enemys[i];
 			}
+			//if ()
 		}
 		
 	}
