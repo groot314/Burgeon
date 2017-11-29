@@ -15,6 +15,9 @@ public:
 
 		Log *newLog = new Log(window);
 		logs.push_back(newLog);
+
+		Enemy *newEnemy = new Enemy(window);
+		enemys.push_back(newEnemy);
 	}
 
 	void update(sf::RenderWindow &window);
