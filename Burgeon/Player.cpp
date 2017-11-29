@@ -37,17 +37,17 @@ void Player::control()
 
 void Player::isHit()
 {
-	this->setRadius(this->getRadius() - 2);
+	this->setScale(sf::Vector2f(.95,.95));
 
 	//add blue overlay on texture
 }
 
 void Player::gotLog()
 {
-	this->setRadius(this->getRadius() + 2);
+	this->setScale(sf::Vector2f(1.05, 1.05));
 }
 
 void Player::shot()
 {
-	this->setRadius(this->getRadius() - 2);
+	this->setScale(sf::Vector2f(.975, .975));
 }
