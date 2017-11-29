@@ -12,6 +12,9 @@ public:
 	GameWrapper(sf::RenderWindow &window) {
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;
+
+		Log *newLog = new Log(window);
+		logs.push_back(newLog);
 	}
 
 	void update(sf::RenderWindow &window);
