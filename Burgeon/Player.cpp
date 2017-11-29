@@ -56,7 +56,7 @@ void Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
 
 bool Player::isTooSmall()
 {
-	return (this->getScale < .5);
+	return (this->getScale().x < 0.5);
 }
 
 
