@@ -11,17 +11,35 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 	}
 
+	
+
 
 	player->controlMovement();
 	if (!player->isTooSmall()) {
 		player->controlShoot(event, fireBalls);
 	}
-	//player->controlShoot(event, fireBalls);
+
 	for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
 		fireBalls[i]->movement();
+		
 	}
 	for (int i = 0; i < enemys.size(); i++) {//move all enemeys
 		enemys[i]->movement();
+		/*
+		for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
+			if (enemys[i]->checkFireballCollison(*fireBalls[i])) {
+				//delete &fireBalls[i];
+				//delete &enemys[i];
+			}
+		}
+		*/
+	}
+	for (int i = 0; i < logs.size(); i++) {
+		if (logs[i]->checkPlayerCollison(*player)) {
+			player->gotLog();
+		}
+		logs[i]->respawnLog();
+
 	}
 }
 
