@@ -14,7 +14,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 	
 
 
-	player->controlMovement();
+	player->controlMovement(window);
 	if (!player->isTooSmall()) {
 		player->controlShoot(event, fireBalls);
 	}

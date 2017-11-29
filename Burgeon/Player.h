@@ -11,7 +11,7 @@ public:
 	void setSpeed(double speed);
 	double getSpeed();
 
-	void controlMovement();
+	void controlMovement(sf::RenderWindow &window);
 	void controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls);
 
 	bool isTooSmall();
