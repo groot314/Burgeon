@@ -48,12 +48,16 @@ void GameWrapper::update(sf::RenderWindow & window)
 				delete tempEnemy;
 			}		
 		}
-		/*
+		
 		if (enemys[i]->isOutOfBounds()) {
+			Enemy *tempEnemy3 = enemys[i];
+			enemys.erase(enemys.begin() + i);
+			delete tempEnemy3;
+
 			Enemy *newEnemy = new Enemy(window);
 			enemys.push_back(newEnemy);
 		}
-		*/
+		
 	}
 	for (int i = 0; i < logs.size(); i++) {
 		if (logs[i]->checkPlayerCollison(*player)) {
