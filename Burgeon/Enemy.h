@@ -9,7 +9,7 @@ public:
 
 	Enemy(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"));
 
-	bool outOfBounds();
+	bool isOutOfBounds();
 
 	void movement();
 	bool checkPlayerCollision(Player &player);
@@ -20,4 +20,6 @@ private:
 
 	int xMovement;
 	int yMovement;
+
+	double speed;
 };
