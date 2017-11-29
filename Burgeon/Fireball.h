@@ -4,7 +4,7 @@
 class FireBall : public sf::CircleShape {
 
 public:
-	FireBall(sf::Vector2f pos = { 0,0 }, int shootDirection=-2, double speed=1.5 ) :CircleShape(10) {
+	FireBall(sf::Vector2f pos = { 0,0 }, int shootDirection=-2, double speed=2 ) :CircleShape(10) {
 		this->setPosition(pos);
 		this->setFillColor(sf::Color::Red);
 		this->speed = speed;
