@@ -20,19 +20,31 @@ double Player::getSpeed()
 	return speed;
 }
 
-void Player::controlMovement()
+void Player::controlMovement(sf::RenderWindow &window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {//up
-		this->move(0*speed,-1*speed);
+		if (this->getPosition().y>=0)
+		{
+			this->move(0 * speed, -1 * speed);
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {//left
-		this->move(-1*speed,0*speed);
+		if (this->getPosition().x >= 0)
+		{
+			this->move(-1 * speed, 0 * speed);
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//right
-		this->move(1*speed,0*speed);
+		if (this->getPosition().x <= window.getSize().x - 100)
+		{
+			this->move(1 * speed, 0 * speed);
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//down
-		this->move(0*speed,1*speed);
+		if ( this->getPosition().y <= window.getSize().y-100)
+		{
+			this->move(0 * speed, 1 * speed);
+		}
 	}
 }
 
