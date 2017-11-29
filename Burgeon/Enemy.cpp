@@ -4,6 +4,8 @@ Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 
 	windowSize = window.getSize();
 
+	speed = 1.25;
+
 	int edge = rand() % 4;
 	int xPos = (rand() % 100) * window.getSize().x * .01;
 	int yPos = (rand() % 100) * window.getSize().y * .01;
@@ -35,12 +37,18 @@ Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 	this->setFillColor(sf::Color::Blue);
 }
 
-bool Enemy::outOfBounds()
+bool Enemy::isOutOfBounds()
 {
 	if (this->getPosition().x > windowSize.x) {
 		return true;
 	}
 	if (this->getPosition().y > windowSize.y) {
+		return true;
+	}
+	if (this->getPosition().x < -this->getRadius()) {
+		return true;
+	}
+	if (this->getPosition().y < -this->getRadius()) {
 		return true;
 	}
 
@@ -49,7 +57,7 @@ bool Enemy::outOfBounds()
 
 void Enemy::movement()
 {
-	this->move(xMovement * 0.05, yMovement * 0.05);
+	this->move(xMovement * speed, yMovement * speed);
 }
 
 bool Enemy::checkPlayerCollision(Player & player)
