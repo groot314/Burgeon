@@ -3,6 +3,8 @@
 
 int main(void)
 {
+	srand(time(NULL));//random
+
 	sf::RenderWindow window(sf::VideoMode(750, 750), "Burgeon");
 	
 	GameWrapper gw(window);

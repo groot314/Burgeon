@@ -1,16 +1,17 @@
+#pragma once
 #include <SFML\Graphics.hpp>
 
 class FireBall : public sf::CircleShape {
 
 public:
-	FireBall(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"), sf::Vector2f pos = { 0,0 }, int shootDirection=-2, int speed=.050 ) :CircleShape(10) {
+	FireBall(sf::Vector2f pos = { 0,0 }, int shootDirection=-2, double speed=.050 ) :CircleShape(10) {
 		this->setPosition(pos);
 		this->setFillColor(sf::Color::Red);
-		this->setRadius(20);
 		this->speed = speed;
+		this->shootDirection(shootDirection);
 	}
 
-	void setSpeed(int newSpeed)
+	void setSpeed(double newSpeed)
 	{
 		speed = newSpeed;
 	}
@@ -23,11 +24,11 @@ public:
 	
 
 private:
-	int speed;
+	double speed;
 	int xMovement;
 	int yMovement;
 
-	int shootDirection(int direction)
+	void shootDirection(int direction)
 	{
 		if (direction == 1)//move up
 		{

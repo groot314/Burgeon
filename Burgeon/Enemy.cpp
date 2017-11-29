@@ -1,10 +1,10 @@
 #include "Enemy.h"
 
-Enemy::Enemy(sf::RenderWindow & window) {
+Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 
 	int edge = rand() % 4;
-	int xPos = (rand() % 100) * window.getSize().x;
-	int yPos = (rand() % 100) * window.getSize().y;
+	int xPos = (rand() % 100) * window.getSize().x * .01;
+	int yPos = (rand() % 100) * window.getSize().y * .01;
 
 	xMovement = 0;
 	yMovement = 0;
@@ -35,7 +35,7 @@ Enemy::Enemy(sf::RenderWindow & window) {
 
 void Enemy::movement()
 {
-	this->move(xMovement * 0.5, yMovement * 0.5);
+	this->move(xMovement * 0.05, yMovement * 0.05);
 }
 
 bool Enemy::checkPlayerCollision(Player & player)
