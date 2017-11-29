@@ -4,7 +4,9 @@
 class FireBall : public sf::CircleShape {
 
 public:
-	FireBall(sf::Vector2f pos = { 0,0 }, int shootDirection=-2, double speed=2 ) :CircleShape(10) {
+	FireBall(sf::Vector2u windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :CircleShape(10) {
+		this->windowSize = windowSize;
+
 		this->setPosition(pos);
 		this->setFillColor(sf::Color::Red);
 		this->speed = speed;
@@ -20,10 +22,30 @@ public:
 	{
 		this->move(xMovement*speed, yMovement*speed);
 	}
+
+	bool isOutOfBounds()
+	{
+		if (this->getPosition().x > windowSize.x) {
+			return true;
+		}
+		if (this->getPosition().y > windowSize.y) {
+			return true;
+		}
+		if (this->getPosition().x < -this->getRadius()) {
+			return true;
+		}
+		if (this->getPosition().y < -this->getRadius()) {
+			return true;
+		}
+
+		return false;
+	}
 	
 	
 
 private:
+	sf::Vector2u windowSize;
+
 	double speed;
 	int xMovement;
 	int yMovement;
