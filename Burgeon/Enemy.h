@@ -1,13 +1,20 @@
 #include <SFML\Graphics.hpp>
+#include "Player.h"
+#include "Fireball.h"
 
 class Enemy : public sf::CircleShape {
 	
 public:
-	Enemy(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"), sf::Vector2f pos = { 0,0 }) :CircleShape(15) {
-		this->setPosition(pos);
-		this->setFillColor(sf::Color::Blue);
-	}
+
+	Enemy(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error")) :CircleShape(15);
+
+	void movement();
+	bool checkPlayerCollision(Player &player);
+	bool checkFireballCollison(FireBall &fireball);
 
 private:
 
+	// Left: 1, Right: 2, Up: 3, Down: 4
+	int xMovement;
+	int yMovement;
 };
