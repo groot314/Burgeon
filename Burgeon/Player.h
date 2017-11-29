@@ -14,6 +14,8 @@ public:
 	void controlMovement();
 	void controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls);
 
+	bool isTooSmall();
+
 	void isHit();
 	void gotLog();
 

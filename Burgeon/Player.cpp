@@ -54,22 +54,27 @@ void Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
 	}
 }
 
+bool Player::isTooSmall()
+{
+	return (this->getScale < .5);
+}
+
 
 void Player::isHit()
 {
-	this->setScale(sf::Vector2f(.95,.95));
+	this->scale(sf::Vector2f(.95,.95));
 
 	//add blue overlay on texture
 }
 
 void Player::gotLog()
 {
-	this->setScale(sf::Vector2f(1.05, 1.05));
+	this->scale(sf::Vector2f(1.05, 1.05));
 }
 
 void Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
 {
-	this->setScale(sf::Vector2f(.975, .975));
+	this->scale(sf::Vector2f(.95,.95));
 
 	FireBall *newFire = new FireBall(this->getPosition(), direction);
 
