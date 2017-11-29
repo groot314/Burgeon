@@ -13,14 +13,15 @@ public:
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;
 
-		Log *newLog = new Log(window);
-		logs.push_back(newLog);
+		for (int i = 0; i < 3; i++) {
+			Log *newLog = new Log(window);
+			logs.push_back(newLog);
+		}
 
-		Log *newLog2 = new Log(window);
-		logs.push_back(newLog2);
-
-		Enemy *newEnemy = new Enemy(window);
-		enemys.push_back(newEnemy);
+		for (int i = 0; i < 3; i++) {
+			Enemy *newEnemy = new Enemy(window);
+			enemys.push_back(newEnemy);
+		}
 	}
 
 	void update(sf::RenderWindow &window);
