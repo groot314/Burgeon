@@ -7,10 +7,13 @@ void GameWrapper::update(sf::RenderWindow & window)
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
+
+
 	}
 
 
-	player->control();
+	player->controlMovement();
+	player->controlShoot(event, fireBalls);
 	for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
 		fireBalls[i]->movement();
 	}
