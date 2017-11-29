@@ -13,7 +13,10 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 
 	player->controlMovement();
-	player->controlShoot(event, fireBalls);
+	if (!player->isTooSmall()) {
+		player->controlShoot(event, fireBalls);
+	}
+	//player->controlShoot(event, fireBalls);
 	for (int i = 0; i < fireBalls.size(); i++) {//move all fireBalls
 		fireBalls[i]->movement();
 	}

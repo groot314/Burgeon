@@ -16,6 +16,9 @@ public:
 		Log *newLog = new Log(window);
 		logs.push_back(newLog);
 
+		Log *newLog2 = new Log(window);
+		logs.push_back(newLog2);
+
 		Enemy *newEnemy = new Enemy(window);
 		enemys.push_back(newEnemy);
 	}
