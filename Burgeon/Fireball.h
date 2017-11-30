@@ -1,14 +1,13 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
-class FireBall : public sf::CircleShape {
+class FireBall : public sf::Sprite {
 
 public:
-	FireBall(sf::Vector2u windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :CircleShape(10) {
+	FireBall(sf::Vector2u windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :Sprite(getSprite()) {
 		this->windowSize = windowSize;
 
 		this->setPosition(pos);
-		this->setFillColor(sf::Color::Red);
 		this->speed = speed;
 		this->shootDirection(shootDirection);
 	}
@@ -31,10 +30,10 @@ public:
 		if (this->getPosition().y > windowSize.y) {
 			return true;
 		}
-		if (this->getPosition().x < -this->getRadius()) {
+		if (this->getPosition().x < -this->getTextureRect().width) {
 			return true;
 		}
-		if (this->getPosition().y < -this->getRadius()) {
+		if (this->getPosition().y < -this->getTextureRect().height) {
 			return true;
 		}
 
@@ -72,5 +71,18 @@ private:
 			this->xMovement = 0;
 			this->yMovement = 1;
 		}
+	}
+
+	static sf::Sprite getSprite() {
+		static sf::Sprite s;
+
+		static sf::Texture texture;
+		if (!texture.loadFromFile("fireball.png")) {
+			std::cout << "Texture not loaded" << std::endl;
+		}
+		texture.setSmooth(true);
+		s.setTexture(texture);
+
+		return s;
 	}
 };
