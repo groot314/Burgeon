@@ -2,9 +2,11 @@
 
 
 
-Player::Player(sf::RenderWindow & window, sf::Vector2f pos):CircleShape(50) {
+Player::Player(sf::RenderWindow & window, sf::Vector2f pos):Sprite(getSprite()){
 	this->setPosition(pos);
-	this->setFillColor(sf::Color::Red);
+
+	this->setColor(sf::Color(255, 255, 255, 200));
+
 	this->setSpeed(1.75);
 
 	windowSize = window.getSize();
@@ -35,13 +37,13 @@ void Player::controlMovement(sf::RenderWindow &window)
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//right
-		if (this->getPosition().x <= window.getSize().x - (this->getRadius()))
+		if (this->getPosition().x <= window.getSize().x )
 		{
 			this->move(1 * speed, 0 * speed);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//down
-		if ( this->getPosition().y <= window.getSize().y- (this->getRadius()))
+		if ( this->getPosition().y <= window.getSize().y)
 		{
 			this->move(0 * speed, 1 * speed);
 		}
@@ -88,7 +90,7 @@ void Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
 {
 	this->scale(sf::Vector2f(.95,.95));
 
-	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x +( this->getRadius()/2),this->getPosition().y + (this->getRadius()/2) }, direction);
+	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x,this->getPosition().y}, direction);
 
 	fireBalls.push_back(newFire);
 }

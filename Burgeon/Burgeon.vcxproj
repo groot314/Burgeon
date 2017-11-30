@@ -164,6 +164,12 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="enemy.png" />
+    <Image Include="fireball.png" />
+    <Image Include="logs.png" />
+    <Image Include="player.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
