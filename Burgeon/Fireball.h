@@ -55,21 +55,25 @@ private:
 		{
 			this->xMovement = 0;
 			this->yMovement = -1;
+			this->setRotation(270);
 		}
 		else if (direction == 2)//move left
 		{
 			this->xMovement = -1;
 			this->yMovement = 0;
+			this->setRotation(180);
 		}
 		else if (direction == 3)//move right
 		{
 			this->xMovement = 1;
 			this->yMovement = 0;
+			this->setRotation(0);
 		}
 		else if (direction == 4)//move down
 		{
 			this->xMovement = 0;
 			this->yMovement = 1;
+			this->setRotation(90);
 		}
 	}
 
