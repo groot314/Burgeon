@@ -11,7 +11,7 @@ public:
 
 	bool isOutOfBounds();
 
-	void movement();
+	virtual void movement();
 	bool checkPlayerCollision(Player &player);
 	bool checkFireballCollison(FireBall &fireball);
 
