@@ -29,11 +29,11 @@ heatSeekingEnemy::heatSeekingEnemy(sf::RenderWindow & window)
 		// move up
 	}
 
-	this->setFillColor(sf::Color::Cyan);
 }
 
 void heatSeekingEnemy::movement(Player player)
 {
+	std::cout << "IN THE RIGHT MOVEMENT!!!" << std::endl;
 	int pX = player.getPosition().x;
 	int pY = player.getPosition().y;
 	
