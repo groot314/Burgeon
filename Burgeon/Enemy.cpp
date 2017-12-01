@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
+Enemy::Enemy(sf::RenderWindow & window):Sprite(getSprite()) {
 
 	windowSize = window.getSize();
 
@@ -34,7 +34,6 @@ Enemy::Enemy(sf::RenderWindow & window):CircleShape(15) {
 		yMovement = -1;
 	}
 
-	this->setFillColor(sf::Color::Blue);
 }
 
 bool Enemy::isOutOfBounds()
@@ -45,10 +44,10 @@ bool Enemy::isOutOfBounds()
 	if (this->getPosition().y > windowSize.y) {
 		return true;
 	}
-	if (this->getPosition().x < -this->getRadius()) {
+	if (this->getPosition().x < -this->getTextureRect().width) {
 		return true;
 	}
-	if (this->getPosition().y < -this->getRadius()) {
+	if (this->getPosition().y < -this->getTextureRect().height) {
 		return true;
 	}
 

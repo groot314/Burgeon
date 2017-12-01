@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameWrapper.cpp" />
+    <ClCompile Include="heatSeekingEnemy.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="GameWrapper.h" />
+    <ClInclude Include="heatSeekingEnemy.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
