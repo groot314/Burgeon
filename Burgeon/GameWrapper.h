@@ -11,6 +11,9 @@ class GameWrapper {
 
 public:
 	GameWrapper(sf::RenderWindow &window) {
+		sprite = sf::Sprite(getBackground());
+		
+
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;
 
@@ -42,4 +45,19 @@ private:
 	std::vector<FireBall*> fireBalls;
 	std::vector<Enemy*> enemys;
 	std::vector<heatSeekingEnemy*> heatSeekers;
+
+	sf::Sprite sprite;
+
+	static sf::Sprite getBackground() {
+		static sf::Sprite s;
+
+		static sf::Texture texture;
+		if (!texture.loadFromFile("background2.png")) {
+			std::cout << "Texture not loaded" << std::endl;
+		}
+		texture.setSmooth(true);
+		s.setTexture(texture);
+
+		return s;
+	}
 };

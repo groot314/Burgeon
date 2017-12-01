@@ -11,8 +11,6 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 	}
 
-
-
 	player->controlMovement(window);
 	if (!player->isTooSmall()) {
 		player->controlShoot(event, fireBalls);
@@ -128,6 +126,10 @@ void GameWrapper::update(sf::RenderWindow & window)
 void GameWrapper::render(sf::RenderWindow & window)
 {
 	window.clear();
+
+	sprite.setScale(sf::Vector2f(.6666, .6666));
+	window.draw(sprite);
+
 	window.draw(*player);
 
 	for (int i = 0; i < logs.size(); i++) {//draw all logs
