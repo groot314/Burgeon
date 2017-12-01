@@ -4,7 +4,7 @@
 
 Player::Player(sf::RenderWindow & window, sf::Vector2f pos):Sprite(getSprite()){
 	this->setPosition(pos);
-
+	this->scale({1.5,1.5});
 	this->setColor(sf::Color(255, 255, 255, 200));
 
 	this->setSpeed(1.75);
@@ -73,17 +73,24 @@ bool Player::isTooSmall()
 	return (this->getScale().x < 0.5);
 }
 
+bool Player::isTooBig()
+{
+	return (this->getScale().x > 2.5);
+}
+
 
 void Player::isHit()
 {
-	this->scale(sf::Vector2f(.95,.95));
+	this->scale(sf::Vector2f(.90,.90));
 
 	//add blue overlay on texture
 }
 
 void Player::gotLog()
 {
-	this->scale(sf::Vector2f(1.05, 1.05));
+	if (!isTooBig) {
+		this->scale(sf::Vector2f(1.05, 1.05));
+	}
 }
 
 void Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
