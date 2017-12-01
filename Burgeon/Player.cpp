@@ -37,13 +37,13 @@ void Player::controlMovement(sf::RenderWindow &window)
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//right
-		if (this->getPosition().x <= window.getSize().x )
+		if (this->getPosition().x <= window.getSize().x -this->getTextureRect().width*this->getScale().x)
 		{
 			this->move(1 * speed, 0 * speed);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//down
-		if ( this->getPosition().y <= window.getSize().y)
+		if ( this->getPosition().y <= window.getSize().y - this->getTextureRect().height*this->getScale().y)
 		{
 			this->move(0 * speed, 1 * speed);
 		}

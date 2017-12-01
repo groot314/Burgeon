@@ -1,6 +1,6 @@
 #include "heatSeekingEnemy.h"
 
-heatSeekingEnemy::heatSeekingEnemy(sf::RenderWindow & window)
+heatSeekingEnemy::heatSeekingEnemy(sf::RenderWindow & window):Enemy(window)
 {
 
 	windowSize = window.getSize();

@@ -7,7 +7,7 @@ class Enemy : public sf::Sprite {
 	
 public:
 
-	Enemy(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"));
+	Enemy(sf::RenderWindow &window);
 
 	bool isOutOfBounds();
 

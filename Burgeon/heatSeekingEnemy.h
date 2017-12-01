@@ -6,7 +6,7 @@ class heatSeekingEnemy : public Enemy {
 
 public:
 
-	heatSeekingEnemy(sf::RenderWindow &window = sf::RenderWindow(sf::VideoMode(500, 500), "Error"));
+	heatSeekingEnemy(sf::RenderWindow &window);
 
 	void movement(Player player);
 
