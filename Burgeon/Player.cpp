@@ -88,7 +88,7 @@ void Player::isHit()
 
 void Player::gotLog()
 {
-	if (!isTooBig) {
+	if (!isTooBig()) {
 		this->scale(sf::Vector2f(1.05, 1.05));
 	}
 }
