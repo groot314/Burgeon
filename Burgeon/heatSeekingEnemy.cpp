@@ -33,7 +33,6 @@ heatSeekingEnemy::heatSeekingEnemy(sf::RenderWindow & window):Enemy(window)
 
 void heatSeekingEnemy::movement(Player player)
 {
-	std::cout << "IN THE RIGHT MOVEMENT!!!" << std::endl;
 	int pX = player.getPosition().x;
 	int pY = player.getPosition().y;
 	

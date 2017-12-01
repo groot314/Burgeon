@@ -3,7 +3,7 @@
 #include <vector>
 #include "Enemy.h"
 #include "Player.h"
-#include "Fireball.h"
+#include "Fireball.h"  
 #include "Log.h"
 #include "heatSeekingEnemy.h"
 
@@ -44,6 +44,7 @@ private:
 	std::vector<Log*> logs;
 	std::vector<FireBall*> fireBalls;
 	std::vector<Enemy*> enemys;
+	int deathCount = 0;
 
 	void deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i);
 
