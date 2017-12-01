@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Fireball.h"
 #include "Log.h"
+#include "heatSeekingEnemy.h"
 
 class GameWrapper {
 
@@ -22,6 +23,12 @@ public:
 			Enemy *newEnemy = new Enemy(window);
 			enemys.push_back(newEnemy);
 		}
+
+		for (int i = 0; i < 1; i++) {
+			heatSeekingEnemy *newHeatSeeker = new heatSeekingEnemy(window);
+			heatSeekers.push_back(newHeatSeeker);
+
+		}
 	}
 
 	void update(sf::RenderWindow &window);
@@ -34,4 +41,5 @@ private:
 	std::vector<Log*> logs;
 	std::vector<FireBall*> fireBalls;
 	std::vector<Enemy*> enemys;
+	std::vector<heatSeekingEnemy*> heatSeekers;
 };
