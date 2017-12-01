@@ -14,7 +14,7 @@ public:
 
 
 private:
-	sf::Vector2u windowSize;
+	sf::Vector2f windowSize;
 
 	static sf::Sprite getSprite() {
 		static sf::Sprite s;

@@ -1,7 +1,7 @@
 #include "Log.h"
 
 Log::Log(sf::RenderWindow & window):Sprite(getSprite()) {
-	windowSize = window.getSize();
+	windowSize = window.getDefaultView().getSize();
 
 	this->scale({1.5,1.5});
 
@@ -10,13 +10,8 @@ Log::Log(sf::RenderWindow & window):Sprite(getSprite()) {
 
 void Log::respawnLog()
 {
-	int xPos;
-	int yPos;
-	int xNum = rand() % 100;
-	int yNum = rand() % 100;
-
-	xPos = xNum * 0.01 * windowSize.x;
-	yPos = yNum * 0.01 * windowSize.y;
+	int xPos = rand() % (int)(windowSize.x - this->getTextureRect().width);
+	int yPos = rand() % (int)(windowSize.y - this->getTextureRect().height);
 
 	this->setPosition(sf::Vector2f(xPos, yPos));
 }
