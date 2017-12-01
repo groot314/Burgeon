@@ -29,7 +29,7 @@ public:
 
 		for (int i = 0; i < 1; i++) {
 			heatSeekingEnemy *newHeatSeeker = new heatSeekingEnemy(window);
-			heatSeekers.push_back(newHeatSeeker);
+			enemys.push_back(newHeatSeeker);
 
 		}
 	}
@@ -44,7 +44,8 @@ private:
 	std::vector<Log*> logs;
 	std::vector<FireBall*> fireBalls;
 	std::vector<Enemy*> enemys;
-	std::vector<heatSeekingEnemy*> heatSeekers;
+
+	void deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i);
 
 	sf::Sprite sprite;
 
