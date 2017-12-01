@@ -51,6 +51,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 				//you lose
 			}
 			deleteEnemy(window, enemys[i], i);
+			deathCount++;
 		}
 		for (int j = 0; j < fireBalls.size(); j++) {
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
@@ -59,11 +60,13 @@ void GameWrapper::update(sf::RenderWindow & window)
 				delete tempFire;
 
 				deleteEnemy(window, enemys[i], i);
+				deathCount++;
 			}		
 		}
 		
 		if (enemys[i]->isOutOfBounds()) {
 			deleteEnemy(window, enemys[i], i);
+			deathCount++;
 		}
 		
 	}
@@ -74,6 +77,33 @@ void GameWrapper::update(sf::RenderWindow & window)
 		if (logs[i]->checkPlayerCollison(*player)) {
 			player->gotLog();
 			logs[i]->respawnLog();
+
+			int chance;
+			chance = rand() % 100;
+
+			if (chance <= 50 && deathCount < 10) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+
+			}
+			else if (chance <= 70 && deathCount < 15) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+			}
+			else if (deathCount >= 15) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+
+				if (chance <= 20) {
+					heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+					enemys.push_back(newEnemy);
+				}
+			}
 		}
 		
 
@@ -110,15 +140,23 @@ void GameWrapper::deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i)/
 	if (deletion == (dynamic_cast <heatSeekingEnemy *>(enemys[i]))) {//is a heatseeker enemy
 		Enemy *tempEnemy = deletion;
 		enemys.erase(enemys.begin() + i);
-		heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-		enemys.push_back(newEnemy);
+
+		int chance;
+		chance = rand() % 100;
+		if (chance <= 95) {
+			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+			enemys.push_back(newEnemy);
+		}
+
 		delete tempEnemy;//delete object
 	}
 	else {//regular enemy
 		Enemy *tempEnemy = deletion;
 		enemys.erase(enemys.begin() + i);
-		Enemy *newEnemy = new Enemy(window);
-		enemys.push_back(newEnemy);
+
+		//Enemy *newEnemy = new Enemy(window);
+		//enemys.push_back(newEnemy);
+
 		delete tempEnemy;//delete object
 	}
 }
