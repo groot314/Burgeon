@@ -17,9 +17,9 @@ int main(void)
 	 }
 
 	//textbox
-	sf::Text text;
-	sf::Font font;
-	if (!font.loadFromFile("arial.ttf"))
+	//sf::Text text;
+	//sf::Font font;
+	/*if (!font.loadFromFile("arial.ttf"))
 	{
 		std::cout << "Font Failed";
 	}
@@ -35,7 +35,7 @@ int main(void)
 			"Watch out for the water droplets or you will shrink!\n"
 			"Shoot fire at your enemy to kill them (See controls)\n"
 			"If you get too small, it's Game Over!");
-	}
+	 */
 
 		sf::Event event;
 		while (start_window.isOpen())
@@ -51,7 +51,7 @@ int main(void)
 			sf::Sprite sprite(texture);
 			sprite.setScale(sf::Vector2f(.6666, .6666));
 			start_window.draw(sprite);
-			start_window.draw(text);
+			//start_window.draw(text);
 			
 			start_window.display();
 		}

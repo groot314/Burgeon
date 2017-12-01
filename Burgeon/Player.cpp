@@ -97,7 +97,7 @@ void Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
 {
 	this->scale(sf::Vector2f(.95,.95));
 
-	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x,this->getPosition().y}, direction);
+	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x + ((this->getTextureRect().width*this->getScale().x) /2), this->getPosition().y + ((this->getTextureRect().height*this->getScale().y) /2)}, direction);
 
 	fireBalls.push_back(newFire);
 }

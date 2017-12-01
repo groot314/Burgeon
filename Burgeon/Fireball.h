@@ -7,7 +7,7 @@ public:
 	FireBall(sf::Vector2f windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :Sprite(getSprite()) {
 		this->windowSize = windowSize;
 
-		this->setPosition(pos);
+		this->setPosition({pos.x-this->getTextureRect().width/2, pos.y - this->getTextureRect().height / 2 });
 		this->speed = speed;
 		this->shootDirection(shootDirection);
 	}

@@ -11,12 +11,17 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 	}
 
+	//
+	//Player updates
 	player->controlMovement(window);
 	if (!player->isTooSmall()) {
 		player->controlShoot(event, fireBalls);
 	}
 
-	for (int i = 0; i < fireBalls.size(); i++) { //move all fireBalls
+
+	//
+	//FireBall updates
+	for (int i = 0; i < fireBalls.size(); i++) {
 		fireBalls[i]->movement();
 		
 		if (fireBalls[i]->isOutOfBounds()) {
@@ -26,52 +31,17 @@ void GameWrapper::update(sf::RenderWindow & window)
 			delete tempFire1;
 		}
 	}
-	for (int i = 0; i < heatSeekers.size(); i++) {
-		heatSeekers[i]->movement(*player);
+	
+	//
+	//Enemy updates
+	for (int i = 0; i < enemys.size(); i++) {
 
-		if (heatSeekers[i]->checkPlayerCollision(*player)) {
-			if (!player->isTooSmall()) {
-				player->isHit();
-			}
-			else {
-				//you lose
-			}
-			heatSeekingEnemy *tempEnemy2 = heatSeekers[i];
-			heatSeekers.erase(heatSeekers.begin() + i);
-			delete tempEnemy2;
-
-			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-			heatSeekers.push_back(newEnemy);
+		if (enemys[i] == (dynamic_cast <heatSeekingEnemy *>(enemys[i]))) {//is a heatseeker enemy
+			(dynamic_cast <heatSeekingEnemy *>(enemys[i]))->movement(*player);
 		}
-		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
-			if (heatSeekers[i]->checkFireballCollison(*fireBalls[j])) {
-				FireBall *tempFire = fireBalls[j];
-				heatSeekingEnemy *tempEnemy = heatSeekers[i];
-
-				fireBalls.erase(fireBalls.begin() + j);
-				delete tempFire;
-
-				heatSeekers.erase(heatSeekers.begin() + i);
-				delete tempEnemy;
-
-				heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-				heatSeekers.push_back(newEnemy);
-			}
+		else {//regular enemy
+			enemys[i]->movement();
 		}
-
-		if (heatSeekers[i]->isOutOfBounds()) {
-			heatSeekingEnemy *tempEnemy3 = heatSeekers[i];
-			heatSeekers.erase(heatSeekers.begin() + i);
-			delete tempEnemy3;
-
-			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-			heatSeekers.push_back(newEnemy);
-		}
-	}
-	for (int i = 0; i < enemys.size(); i++) {//move all enemeys
-		enemys[i]->movement();
-		
-		
 
 		if (enemys[i]->checkPlayerCollision(*player)) {
 			if (!player->isTooSmall()) {
@@ -80,43 +50,60 @@ void GameWrapper::update(sf::RenderWindow & window)
 			else {
 				//you lose
 			}
-			Enemy *tempEnemy2 = enemys[i];
-			enemys.erase(enemys.begin() + i);
-			delete tempEnemy2;
-
-			Enemy *newEnemy = new Enemy(window);
-			enemys.push_back(newEnemy);
+			deleteEnemy(window, enemys[i], i);
+			deathCount++;
 		}
-		for (int j = 0; j < fireBalls.size(); j++) {//move all fireBalls
+		for (int j = 0; j < fireBalls.size(); j++) {
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
 				FireBall *tempFire = fireBalls[j];
-				Enemy *tempEnemy = enemys[i];
-
 				fireBalls.erase(fireBalls.begin() + j);
 				delete tempFire;
 
-				enemys.erase(enemys.begin() + i);
-				delete tempEnemy;
-
-				Enemy *newEnemy = new Enemy(window);
-				enemys.push_back(newEnemy);
+				deleteEnemy(window, enemys[i], i);
+				deathCount++;
 			}		
 		}
 		
 		if (enemys[i]->isOutOfBounds()) {
-			Enemy *tempEnemy3 = enemys[i];
-			enemys.erase(enemys.begin() + i);
-			delete tempEnemy3;
-
-			Enemy *newEnemy = new Enemy(window);
-			enemys.push_back(newEnemy);
+			deleteEnemy(window, enemys[i], i);
+			deathCount++;
 		}
 		
 	}
+
+	//
+	//Log updates
 	for (int i = 0; i < logs.size(); i++) {
 		if (logs[i]->checkPlayerCollison(*player)) {
 			player->gotLog();
 			logs[i]->respawnLog();
+
+			int chance;
+			chance = rand() % 100;
+
+			if (chance <= 50 && deathCount < 10) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+
+			}
+			else if (chance <= 70 && deathCount < 15) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+			}
+			else if (deathCount >= 15) {
+				std::cout << "DeathCount:" << deathCount << std::endl;
+
+				Enemy *newEnemy = new Enemy(window);
+				enemys.push_back(newEnemy);
+
+				if (chance <= 20) {
+					heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+					enemys.push_back(newEnemy);
+				}
+			}
 		}
 		
 
@@ -141,12 +128,35 @@ void GameWrapper::render(sf::RenderWindow & window)
 	for (int i = 0; i < enemys.size(); i++) {//draw all enemeys
 		window.draw(*enemys[i]);
 	}
-	for (int i = 0; i < heatSeekers.size(); i++) {//draw all enemeys
-		window.draw(*heatSeekers[i]);
-	}
 	window.display();
 }
 
 GameWrapper::~GameWrapper()
 {
+}
+
+void GameWrapper::deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i)//i = array value to delete
+{
+	if (deletion == (dynamic_cast <heatSeekingEnemy *>(enemys[i]))) {//is a heatseeker enemy
+		Enemy *tempEnemy = deletion;
+		enemys.erase(enemys.begin() + i);
+
+		int chance;
+		chance = rand() % 100;
+		if (chance <= 95) {
+			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+			enemys.push_back(newEnemy);
+		}
+
+		delete tempEnemy;//delete object
+	}
+	else {//regular enemy
+		Enemy *tempEnemy = deletion;
+		enemys.erase(enemys.begin() + i);
+
+		//Enemy *newEnemy = new Enemy(window);
+		//enemys.push_back(newEnemy);
+
+		delete tempEnemy;//delete object
+	}
 }
