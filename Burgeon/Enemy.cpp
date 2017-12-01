@@ -2,7 +2,7 @@
 
 Enemy::Enemy(sf::RenderWindow & window):Sprite(getSprite()) {
 
-	windowSize = window.getSize();
+	windowSize = window.getDefaultView().getSize();
 
 	speed = 1.25;
 

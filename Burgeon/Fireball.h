@@ -4,7 +4,7 @@
 class FireBall : public sf::Sprite {
 
 public:
-	FireBall(sf::Vector2u windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :Sprite(getSprite()) {
+	FireBall(sf::Vector2f windowSize, sf::Vector2f pos = { 0,0 }, int shootDirection = -2, double speed = 2) :Sprite(getSprite()) {
 		this->windowSize = windowSize;
 
 		this->setPosition(pos);
@@ -43,7 +43,7 @@ public:
 	
 
 private:
-	sf::Vector2u windowSize;
+	sf::Vector2f windowSize;
 
 	double speed;
 	int xMovement;

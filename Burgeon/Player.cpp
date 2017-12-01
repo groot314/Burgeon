@@ -9,7 +9,7 @@ Player::Player(sf::RenderWindow & window, sf::Vector2f pos):Sprite(getSprite()){
 
 	this->setSpeed(1.75);
 
-	windowSize = window.getSize();
+	windowSize = window.getDefaultView().getSize();
 }
 
 void Player::setSpeed(double speed)
@@ -37,13 +37,13 @@ void Player::controlMovement(sf::RenderWindow &window)
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//right
-		if (this->getPosition().x <= window.getSize().x -this->getTextureRect().width*this->getScale().x)
+		if (this->getPosition().x <= windowSize.x -this->getTextureRect().width*this->getScale().x)
 		{
 			this->move(1 * speed, 0 * speed);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//down
-		if ( this->getPosition().y <= window.getSize().y - this->getTextureRect().height*this->getScale().y)
+		if ( this->getPosition().y <= windowSize.y - this->getTextureRect().height*this->getScale().y)
 		{
 			this->move(0 * speed, 1 * speed);
 		}

@@ -16,7 +16,7 @@ public:
 	bool checkFireballCollison(FireBall &fireball);
 
 private:
-	sf::Vector2u windowSize;
+	sf::Vector2f windowSize;
 
 	int xMovement;
 	int yMovement;
