@@ -60,6 +60,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 			else {
 				//you lose
 			}
+			score->setScore(score->getScore() + 20);
 			deleteEnemy(window, enemys[i], i);
 			deathCount++;
 		}
@@ -68,7 +69,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 				FireBall *tempFire = fireBalls[j];
 				fireBalls.erase(fireBalls.begin() + j);
 				delete tempFire;
-
+				score->setScore(score->getScore() + 20);
 				deleteEnemy(window, enemys[i], i);
 				deathCount++;
 			}		
@@ -88,7 +89,8 @@ void GameWrapper::update(sf::RenderWindow & window)
 			player->gotLog();
 			logs[i]->respawnLog();
 
-			
+			score->setScore(score->getScore() + 5);
+
 			logChanceSpawn(deathCount, window, true);
 
 			
@@ -116,6 +118,7 @@ void GameWrapper::render(sf::RenderWindow & window)
 	for (int i = 0; i < enemys.size(); i++) {//draw all enemeys
 		window.draw(*enemys[i]);
 	}
+	window.draw(*score);
 	window.display();
 }
 

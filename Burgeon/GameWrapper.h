@@ -6,13 +6,16 @@
 #include "Fireball.h"  
 #include "Log.h"
 #include "heatSeekingEnemy.h"
+#include "HealthAndScore.h"
+
 
 class GameWrapper {
 
 public:
 	GameWrapper(sf::RenderWindow &window) {
 		sprite = sf::Sprite(getBackground());
-		
+		score = new HealthAndScore({ 50,50 });
+
 
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;
@@ -48,6 +51,8 @@ private:
 	int heatCount = 0;
 	int timeCounter = 0;
 	int sec = 2;
+	HealthAndScore *score;
+
 
 	void timeSpawn(int timeCounter, int min, int max, sf::RenderWindow &window, bool heatSeeker);
 	void logChanceSpawn(int deathCount, sf::RenderWindow &window, bool heatSeeker);

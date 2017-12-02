@@ -53,7 +53,7 @@
     <ClInclude Include="heatSeekingEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Score.h">
+    <ClInclude Include="HealthAndScore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,11 +2,11 @@
 #include <iostream>
 #include <string>
 
-class Score : public sf::Text {
+class HealthAndScore : public sf::Text {
 
 public:
 
-	Score(sf::Vector2f pos, int score = 0) {
+	HealthAndScore(sf::Vector2f pos, int score = 0) {
 
 		if (!font.loadFromFile("arial.ttf"))
 		{
