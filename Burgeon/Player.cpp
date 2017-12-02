@@ -4,7 +4,7 @@
 
 Player::Player(sf::RenderWindow & window, sf::Vector2f pos):Sprite(getSprite()){
 	this->setPosition(pos);
-	this->scale({1.5,1.5});
+	this->scale({.5,.5});
 	this->setColor(sf::Color(255, 255, 255, 200));
 
 	this->setSpeed(1.75);
@@ -70,7 +70,7 @@ void Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
 
 bool Player::isTooSmall()
 {
-	return (this->getScale().x < 0.5);
+	return (this->getScale().x < 0.35);
 }
 
 bool Player::isTooBig()
