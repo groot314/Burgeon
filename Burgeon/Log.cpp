@@ -3,7 +3,7 @@
 Log::Log(sf::RenderWindow & window):Sprite(getSprite()) {
 	windowSize = window.getDefaultView().getSize();
 
-	this->scale({1.5,1.5});
+	this->scale({.75,.75});
 
 	this->respawnLog();
 }
