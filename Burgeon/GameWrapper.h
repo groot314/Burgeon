@@ -45,7 +45,12 @@ private:
 	std::vector<FireBall*> fireBalls;
 	std::vector<Enemy*> enemys;
 	int deathCount = 0;
+	int heatCount = 0;
+	int timeCounter = 0;
+	int sec = 2;
 
+	void timeSpawn(int timeCounter, int min, int max, sf::RenderWindow &window, bool heatSeeker);
+	void logChanceSpawn(int deathCount, sf::RenderWindow &window, bool heatSeeker);
 	void deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i);
 
 	sf::Sprite sprite;

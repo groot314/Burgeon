@@ -11,12 +11,22 @@ void GameWrapper::update(sf::RenderWindow & window)
 
 	}
 
-	//
 	//Player updates
 	player->controlMovement(window);
 	if (!player->isTooSmall()) {
 		player->controlShoot(event, fireBalls);
 	}
+
+
+	timeCounter++;
+	if (timeCounter == 7200) {
+		timeCounter = 120;
+	}
+
+
+	timeSpawn(timeCounter, 2, 4, window, false);
+	timeSpawn(timeCounter, 4, 6, window, true);
+
 
 
 	//
@@ -78,32 +88,10 @@ void GameWrapper::update(sf::RenderWindow & window)
 			player->gotLog();
 			logs[i]->respawnLog();
 
-			int chance;
-			chance = rand() % 100;
+			
+			logChanceSpawn(deathCount, window, true);
 
-			if (chance <= 50 && deathCount < 10) {
-				std::cout << "DeathCount:" << deathCount << std::endl;
-				Enemy *newEnemy = new Enemy(window);
-				enemys.push_back(newEnemy);
-
-			}
-			else if (chance <= 70 && deathCount < 15) {
-				std::cout << "DeathCount:" << deathCount << std::endl;
-
-				Enemy *newEnemy = new Enemy(window);
-				enemys.push_back(newEnemy);
-			}
-			else if (deathCount >= 15) {
-				std::cout << "DeathCount:" << deathCount << std::endl;
-
-				Enemy *newEnemy = new Enemy(window);
-				enemys.push_back(newEnemy);
-
-				if (chance <= 20) {
-					heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-					enemys.push_back(newEnemy);
-				}
-			}
+			
 		}
 		
 
@@ -140,23 +128,59 @@ void GameWrapper::deleteEnemy(sf::RenderWindow &window, Enemy *deletion, int i)/
 	if (deletion == (dynamic_cast <heatSeekingEnemy *>(enemys[i]))) {//is a heatseeker enemy
 		Enemy *tempEnemy = deletion;
 		enemys.erase(enemys.begin() + i);
-
-		int chance;
-		chance = rand() % 100;
-		if (chance <= 95) {
-			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
-			enemys.push_back(newEnemy);
-		}
-
 		delete tempEnemy;//delete object
 	}
 	else {//regular enemy
 		Enemy *tempEnemy = deletion;
 		enemys.erase(enemys.begin() + i);
-
-		//Enemy *newEnemy = new Enemy(window);
-		//enemys.push_back(newEnemy);
-
 		delete tempEnemy;//delete object
 	}
+}
+
+
+void GameWrapper::timeSpawn(int timeCounter, int min, int max, sf::RenderWindow &window, bool heatSeeker) {
+
+	if ((timeCounter % (120 * (sec + min))) == 0) {
+		sec = rand() % (max - 1);
+
+		if (heatSeeker) {
+			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+			enemys.push_back(newEnemy);
+		}
+		else {
+			Enemy *newEnemy = new Enemy(window);
+			enemys.push_back(newEnemy);
+		}
+	}
+}
+
+void GameWrapper::logChanceSpawn(int deathCount, sf::RenderWindow & window, bool heatSeeker)
+{
+	int chance;
+	chance = rand() % 100;
+
+	if (chance <= 20 && deathCount < 10) {
+		std::cout << "DeathCount:" << deathCount << std::endl;
+		Enemy *newEnemy = new Enemy(window);
+		enemys.push_back(newEnemy);
+
+	}
+	else if (chance <= 40 && deathCount < 15) {
+		std::cout << "DeathCount:" << deathCount << std::endl;
+
+		Enemy *newEnemy = new Enemy(window);
+		enemys.push_back(newEnemy);
+	}
+	else if (chance <= 50 && deathCount >= 15) {
+		std::cout << "DeathCount:" << deathCount << std::endl;
+
+		Enemy *newEnemy = new Enemy(window);
+		enemys.push_back(newEnemy);
+
+		if (chance <= 20) {
+			heatSeekingEnemy *newEnemy = new heatSeekingEnemy(window);
+			enemys.push_back(newEnemy);
+		}
+	}
+
 }
