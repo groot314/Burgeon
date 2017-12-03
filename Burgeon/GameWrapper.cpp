@@ -1,5 +1,10 @@
 #include "GameWrapper.h"
 
+bool GameWrapper::isGameOver()
+{
+	return gameOver;
+}
+
 void GameWrapper::update(sf::RenderWindow & window)
 {
 	sf::Event event;
@@ -59,6 +64,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 			}
 			else {
 				//you lose
+				gameOver = true;
 			}
 			score->setScore(score->getScore() + 20);
 			deleteEnemy(window, enemys[i], i);

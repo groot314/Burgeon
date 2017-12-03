@@ -13,6 +13,8 @@ class GameWrapper {
 
 public:
 	GameWrapper(sf::RenderWindow &window) {
+		gameOver = false;
+
 		sprite = sf::Sprite(getBackground());
 		score = new HealthAndScore({ 50,50 });
 
@@ -36,6 +38,7 @@ public:
 
 		}
 	}
+	bool isGameOver();
 
 	void update(sf::RenderWindow &window);
 	void render(sf::RenderWindow &window);
@@ -43,6 +46,8 @@ public:
 	~GameWrapper();
 
 private:
+	bool gameOver;
+
 	Player *player;
 	std::vector<Log*> logs;
 	std::vector<FireBall*> fireBalls;
