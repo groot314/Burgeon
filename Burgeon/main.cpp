@@ -15,6 +15,12 @@ int main(void)
 		std::cout << "Texture not loaded" << std::endl;
 	}
 
+	sf::Texture gameover;
+	if (!gameover.loadFromFile("gameover.png"))
+	{
+		std::cout << "Gameover not loaded" << std::endl;
+	}
+
 	sf::Event event;
 	bool gameStart = false;
 
@@ -55,6 +61,33 @@ int main(void)
 
 		}
 		gameStart = false;
+		bool game_over= gw.isGameOver();
+		while (window.isOpen() && game_over) {
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					window.close();
+
+				if (event.type == sf::Event::KeyReleased) {
+					if (event.key.code == sf::Keyboard::R) {
+						gameStart = true;
+						game_over = false;
+					}
+					else if (event.key.code == sf::Keyboard::Space) {
+						gameStart = false;
+						game_over = false;
+					}
+				}
+
+			}
+
+			window.clear();
+			sf::Sprite game(gameover);
+			game.setScale(sf::Vector2f(.6666, .6666));
+			window.draw(game);
+
+			window.display();
+		}
 	}
 
 	return(0);
