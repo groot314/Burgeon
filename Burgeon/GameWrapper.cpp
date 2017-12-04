@@ -143,6 +143,11 @@ void GameWrapper::render(sf::RenderWindow & window)
 	window.display();
 }
 
+int GameWrapper::getScore()
+{
+	return score->getScore();
+}
+
 GameWrapper::~GameWrapper()
 {
 }

@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "GameWrapper.h"
 #include <iostream>
+#include <string>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -63,6 +65,27 @@ int main(void)
 		gameStart = false;
 		bool game_over= gw.isGameOver();
 		while (window.isOpen() && game_over) {
+			//score on gameover screen
+			sf::Text text;
+			sf::Font font;
+			if (!font.loadFromFile("LeagueGothic.otf"))
+			{
+				// doesn't load
+				std::cout << "League Gothic failed";
+
+			}
+
+			else {
+				int i = gw.getScore();
+				std::string s =std::to_string(i);
+				text.setFont(font);
+				text.setString("Score: " + s);
+				//text.setString(s);
+				text.setCharacterSize(75);
+				text.setColor(sf::Color::White);
+				text.setPosition(520, 480);
+			}
+			text.setFont(font);
 			while (window.pollEvent(event))
 			{
 				if (event.type == sf::Event::Closed)
@@ -85,9 +108,12 @@ int main(void)
 			sf::Sprite game(gameover);
 			game.setScale(sf::Vector2f(.6666, .6666));
 			window.draw(game);
-
+			window.draw(text);
 			window.display();
+
+			
 		}
+		
 	}
 
 	return(0);

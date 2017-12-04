@@ -43,6 +43,8 @@ public:
 	void update(sf::RenderWindow &window);
 	void render(sf::RenderWindow &window);
 
+	int getScore();
+
 	~GameWrapper();
 
 private:
