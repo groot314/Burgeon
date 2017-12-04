@@ -17,7 +17,7 @@ public:
 
 		sprite = sf::Sprite(getBackground());
 		score = new HealthAndScore({ 50,50 });
-
+		health = new Health({ 1150, 0 });
 
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;
@@ -57,6 +57,7 @@ private:
 	int timeCounter = 0;
 	int sec = 2;
 	HealthAndScore *score;
+	Health *health;
 
 
 	void timeSpawn(int timeCounter, int min, int max, sf::RenderWindow &window, bool heatSeeker);

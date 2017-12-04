@@ -19,7 +19,12 @@ void GameWrapper::update(sf::RenderWindow & window)
 	//Player updates
 	player->controlMovement(window);
 	if (!player->isTooSmall()) {
-		player->controlShoot(event, fireBalls);
+		bool shot = false;
+		shot = player->controlShoot(event, fireBalls);
+		if (shot) {
+			health->setHealth(health->getHealth() - 10);
+		}
+
 	}
 
 
@@ -68,6 +73,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 				std::cout << "Score: " << score->getScore() << std::endl;
 			}
 			score->setScore(score->getScore() + 20);
+			health->setHealth(health->getHealth() - 20);
 			deleteEnemy(window, enemys[i], i);
 			deathCount++;
 		}
@@ -97,6 +103,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 			logs[i]->respawnLog();
 
 			score->setScore(score->getScore() + 5);
+			health->setHealth(health->getHealth() + 10);
 
 			logChanceSpawn(deathCount, window, true);
 
@@ -126,6 +133,7 @@ void GameWrapper::render(sf::RenderWindow & window)
 		window.draw(*enemys[i]);
 	}
 	window.draw(*score);
+	window.draw(*health);
 	window.display();
 }
 

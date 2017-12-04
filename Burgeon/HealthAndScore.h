@@ -11,7 +11,7 @@ public:
 		if (!font.loadFromFile("arial.ttf"))
 		{
 			// doesn't load
-			std::cout << "Arial fai led";
+			std::cout << "Arial failed";
 		
 		}
 
@@ -42,5 +42,49 @@ public:
 private:
 
 	int score;
+	sf::Font font;
+};
+
+class Health : public sf::Text {
+
+public:
+
+	Health(sf::Vector2f pos, int health = 70) {
+
+		if (!font.loadFromFile("arial.ttf"))
+		{
+			// doesn't load
+			std::cout << "Arial failed";
+
+		}
+
+		else {
+
+			this->setFont(font);
+			this->setCharacterSize(24);
+			this->setColor(sf::Color::Red);
+			this->setHealth(health);
+			this->setPosition(pos);
+
+		}
+	}
+
+	int getHealth() {
+
+		return health;
+	}
+
+	void setHealth(int newHealth) {
+
+		std::string string;
+		health = newHealth;
+		string = "Health: ";
+		string.append(std::to_string(health));
+		this->setString(string);
+	}
+
+private:
+
+	int health;
 	sf::Font font;
 };

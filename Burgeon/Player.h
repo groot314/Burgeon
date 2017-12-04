@@ -13,7 +13,7 @@ public:
 	double getSpeed();
 
 	void controlMovement(sf::RenderWindow &window);
-	void controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls);
+	bool controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls);
 
 	bool isTooSmall();
 	bool isTooBig();
@@ -26,7 +26,7 @@ private:
 
 	double speed;
 
-	void shoot(std::vector<FireBall*> & fireBalls, int direction);
+	bool shoot(std::vector<FireBall*> & fireBalls, int direction);
 
 	static sf::Sprite getSprite() {
 		static sf::Sprite s;

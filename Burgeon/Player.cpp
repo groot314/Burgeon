@@ -50,22 +50,24 @@ void Player::controlMovement(sf::RenderWindow &window)
 	}
 }
 
-void Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
+bool Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
 {
+	bool shot = false;
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::Up) {//up
-			shoot(fireBalls,1);
+			shot = shoot(fireBalls,1);
 		}
 		if (event.key.code == sf::Keyboard::Left) {//left
-			shoot(fireBalls, 2);
+			shot = shoot(fireBalls, 2);
 		}
 		if (event.key.code == sf::Keyboard::Right) {//right
-			shoot(fireBalls, 3);
+			shot = shoot(fireBalls, 3);
 		}
 		if (event.key.code == sf::Keyboard::Down) {//down
-			shoot(fireBalls, 4);
+			shot = shoot(fireBalls, 4);
 		}
 	}
+	return shot;
 }
 
 bool Player::isTooSmall()
@@ -93,11 +95,13 @@ void Player::gotLog()
 	}
 }
 
-void Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
+bool Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
 {
 	this->scale(sf::Vector2f(.95,.95));
 
 	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x + ((this->getTextureRect().width*this->getScale().x) /2), this->getPosition().y + ((this->getTextureRect().height*this->getScale().y) /2)}, direction);
 
 	fireBalls.push_back(newFire);
+
+	return true;
 }
