@@ -8,18 +8,18 @@ public:
 
 	HealthAndScore(sf::Vector2f pos, int score = 0) {
 
-		if (!font.loadFromFile("arial.ttf"))
+		if (!font.loadFromFile("LeagueGothic.otf"))
 		{
 			// doesn't load
-			std::cout << "Arial failed";
+			std::cout << "LeagueGothic failed";
 		
 		}
 
 		else {
 
 			this->setFont(font);
-			this->setCharacterSize(24);
-			this->setColor(sf::Color::Red);
+			this->setCharacterSize(32);
+			this->setColor(sf::Color::White);
 			this->setScore(score);
 
 		}
@@ -51,18 +51,18 @@ public:
 
 	Health(sf::Vector2f pos, int health = 70) {
 
-		if (!font.loadFromFile("arial.ttf"))
+		if (!font.loadFromFile("LeagueGothic.otf"))
 		{
 			// doesn't load
-			std::cout << "Arial failed";
+			std::cout << "LeagueGothic failed";
 
 		}
 
 		else {
 
 			this->setFont(font);
-			this->setCharacterSize(24);
-			this->setColor(sf::Color::Red);
+			this->setCharacterSize(32);
+			this->setColor(sf::Color::White);
 			this->setHealth(health);
 			this->setPosition(pos);
 
