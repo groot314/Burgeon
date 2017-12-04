@@ -19,9 +19,9 @@ public:
 
 			this->setFont(font);
 			this->setCharacterSize(32);
-			this->setColor(sf::Color::White);
+			this->setColor(sf::Color::Black);
 			this->setScore(score);
-
+			this->setPosition(pos);
 		}
 	}
 
@@ -62,7 +62,7 @@ public:
 
 			this->setFont(font);
 			this->setCharacterSize(32);
-			this->setColor(sf::Color::White);
+			this->setColor(sf::Color::Black);
 			this->setHealth(health);
 			this->setPosition(pos);
 

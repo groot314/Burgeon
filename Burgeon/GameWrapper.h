@@ -16,8 +16,8 @@ public:
 		gameOver = false;
 
 		sprite = sf::Sprite(getBackground());
-		score = new HealthAndScore({ 50,50 });
-		health = new Health({ 1150, 0 });
+		score = new HealthAndScore({ 75,10 });
+		health = new Health({ 1120, 10 });
 
 		Player *playerP = new Player(window, { 300,300 });//init player
 		player = playerP;

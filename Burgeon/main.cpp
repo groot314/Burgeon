@@ -83,7 +83,7 @@ int main(void)
 				//text.setString(s);
 				text.setCharacterSize(75);
 				text.setColor(sf::Color::White);
-				text.setPosition(520, 480);
+				text.setPosition(520, 460);
 			}
 			text.setFont(font);
 			while (window.pollEvent(event))
