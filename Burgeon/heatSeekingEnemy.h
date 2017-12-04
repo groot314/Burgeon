@@ -12,7 +12,7 @@ public:
 
 private:
 
-	sf::Vector2u windowSize;
+	sf::Vector2f windowSize;
 
 	double speed;
 };

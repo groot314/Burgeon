@@ -65,6 +65,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 			else {
 				//you lose
 				gameOver = true;
+				std::cout << "Score: " << score->getScore() << std::endl;
 			}
 			score->setScore(score->getScore() + 20);
 			deleteEnemy(window, enemys[i], i);
@@ -169,19 +170,19 @@ void GameWrapper::logChanceSpawn(int deathCount, sf::RenderWindow & window, bool
 	chance = rand() % 100;
 
 	if (chance <= 20 && deathCount < 10) {
-		std::cout << "DeathCount:" << deathCount << std::endl;
+		//std::cout << "DeathCount:" << deathCount << std::endl;
 		Enemy *newEnemy = new Enemy(window);
 		enemys.push_back(newEnemy);
 
 	}
 	else if (chance <= 40 && deathCount < 15) {
-		std::cout << "DeathCount:" << deathCount << std::endl;
+		//std::cout << "DeathCount:" << deathCount << std::endl;
 
 		Enemy *newEnemy = new Enemy(window);
 		enemys.push_back(newEnemy);
 	}
 	else if (chance <= 50 && deathCount >= 15) {
-		std::cout << "DeathCount:" << deathCount << std::endl;
+		//std::cout << "DeathCount:" << deathCount << std::endl;
 
 		Enemy *newEnemy = new Enemy(window);
 		enemys.push_back(newEnemy);

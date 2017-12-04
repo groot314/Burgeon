@@ -7,8 +7,8 @@ Enemy::Enemy(sf::RenderWindow & window):Sprite(getSprite()) {
 	speed = 1.25;
 
 	int edge = rand() % 4;
-	int xPos = (rand() % 100) * window.getSize().x * .01;
-	int yPos = (rand() % 100) * window.getSize().y * .01;
+	int xPos = (rand() % 100) * window.getDefaultView().getSize().x * .01;
+	int yPos = (rand() % 100) * window.getDefaultView().getSize().y * .01;
 
 	xMovement = 0;
 	yMovement = 0;
@@ -24,12 +24,12 @@ Enemy::Enemy(sf::RenderWindow & window):Sprite(getSprite()) {
 		yMovement = 1;
 	}
 	else if (edge == 2) { // right
-		this->setPosition(sf::Vector2f(window.getSize().x, yPos));
+		this->setPosition(sf::Vector2f(window.getDefaultView().getSize().x, yPos));
 		// move left
 		xMovement = -1;
 	}
 	else { // bottom
-		this->setPosition(sf::Vector2f(xPos, window.getSize().y));
+		this->setPosition(sf::Vector2f(xPos, window.getDefaultView().getSize().y));
 		// move up
 		yMovement = -1;
 	}
