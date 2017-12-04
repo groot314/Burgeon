@@ -73,7 +73,13 @@ void GameWrapper::update(sf::RenderWindow & window)
 				std::cout << "Score: " << score->getScore() << std::endl;
 			}
 			score->setScore(score->getScore() + 20);
-			health->setHealth(health->getHealth() - 20);
+			if (health->getHealth() != 10) {
+				health->setHealth(health->getHealth() - 20);
+			}
+			else {
+				health->setHealth(health->getHealth() - 10);
+
+			}
 			deleteEnemy(window, enemys[i], i);
 			deathCount++;
 		}
