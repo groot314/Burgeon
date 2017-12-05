@@ -19,25 +19,24 @@ void GameWrapper::update(sf::RenderWindow & window)
 	//Player updates
 	player->controlMovement(window);
 	if (!player->isTooSmall()) {
-		bool shot = false;
-		shot = player->controlShoot(event, fireBalls);
-		if (shot) {
-			health->setHealth(health->getHealth() - 10);
-		}
-
+		player->controlShoot(event, fireBalls);
 	}
 
 
+	//game loop counter
 	timeCounter++;
 	if (timeCounter == 7200) {
 		timeCounter = 120;
 	}
 
-
+	//random spawn times
 	timeSpawn(timeCounter, 2, 4, window, false);
 	timeSpawn(timeCounter, 4, 6, window, true);
 
 
+	//health updater
+	health->setHealth(player->getHealth());
+	
 
 	//
 	//FireBall updates
@@ -73,13 +72,6 @@ void GameWrapper::update(sf::RenderWindow & window)
 				std::cout << "Score: " << score->getScore() << std::endl;
 			}
 			score->setScore(score->getScore() + 20);
-			if (health->getHealth() != 10) {
-				health->setHealth(health->getHealth() - 20);
-			}
-			else {
-				health->setHealth(health->getHealth() - 10);
-
-			}
 			deleteEnemy(window, enemys[i], i);
 			deathCount++;
 		}
@@ -88,7 +80,6 @@ void GameWrapper::update(sf::RenderWindow & window)
 				FireBall *tempFire = fireBalls[j];
 				fireBalls.erase(fireBalls.begin() + j);
 				delete tempFire;
-				score->setScore(score->getScore() + 20);
 				deleteEnemy(window, enemys[i], i);
 				deathCount++;
 			}		
@@ -109,7 +100,6 @@ void GameWrapper::update(sf::RenderWindow & window)
 			logs[i]->respawnLog();
 
 			score->setScore(score->getScore() + 5);
-			health->setHealth(health->getHealth() + 10);
 
 			logChanceSpawn(deathCount, window, true);
 

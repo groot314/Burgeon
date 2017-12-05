@@ -15,8 +15,11 @@ public:
 	void controlMovement(sf::RenderWindow &window);
 	bool controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls);
 
+	int getHealth();
+
 	bool isTooSmall();
 	bool isTooBig();
+	bool isDead();
 
 	void isHit();
 	void gotLog();
@@ -24,9 +27,12 @@ public:
 private:
 	sf::Vector2f windowSize;
 
+	int health;
+
 	double speed;
 
 	bool shoot(std::vector<FireBall*> & fireBalls, int direction);
+	void setHealthSize();
 
 	static sf::Sprite getSprite() {
 		static sf::Sprite s;
