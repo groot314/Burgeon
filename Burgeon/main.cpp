@@ -54,7 +54,7 @@ int main(void)
 		}
 		GameWrapper gw(window);
 
-		while (window.isOpen() && !gw.isGameOver())//main game loop
+		while (window.isOpen() && !gw.isGameOver() && !gw.isReset())//main game loop
 		{
 
 			gw.update(window);
@@ -62,9 +62,12 @@ int main(void)
 			gw.render(window);
 
 		}
-		gameStart = false;
+		if (gw.isReset()) {
+			gameStart = true;
+		}
+
 		bool game_over= gw.isGameOver();
-		while (window.isOpen() && game_over) {
+		while (window.isOpen() && game_over && !gw.isReset()) {
 			//score on gameover screen
 			sf::Text text;
 			sf::Font font;

@@ -5,6 +5,11 @@ bool GameWrapper::isGameOver()
 	return gameOver;
 }
 
+bool GameWrapper::isReset()
+{
+	return reset;
+}
+
 void GameWrapper::update(sf::RenderWindow & window)
 {
 	sf::Event event;
@@ -13,7 +18,10 @@ void GameWrapper::update(sf::RenderWindow & window)
 		if (event.type == sf::Event::Closed)
 			window.close();
 
-
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key.code == sf::Keyboard::P)
+				reset = true;
+		}
 	}
 
 	//Player updates

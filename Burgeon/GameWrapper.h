@@ -14,6 +14,7 @@ class GameWrapper {
 public:
 	GameWrapper(sf::RenderWindow &window) {
 		gameOver = false;
+		reset = false;
 
 		sprite = sf::Sprite(getBackground());
 		score = new HealthAndScore({ 75,10 });
@@ -39,6 +40,7 @@ public:
 		}
 	}
 	bool isGameOver();
+	bool isReset();
 
 	void update(sf::RenderWindow &window);
 	void render(sf::RenderWindow &window);
@@ -49,6 +51,7 @@ public:
 
 private:
 	bool gameOver;
+	bool reset;
 
 	Player *player;
 	std::vector<Log*> logs;
