@@ -86,7 +86,7 @@ void GameWrapper::update(sf::RenderWindow & window)
 		for (int j = 0; j < fireBalls.size(); j++) {
 			if (enemys[i]->checkFireballCollison(*fireBalls[j])) {
 				FireBall *tempFire = fireBalls[j];
-				fireBalls.erase(fireBalls.begin() + j);
+				fireBalls.erase(fireBalls.begin() + j); 
 				delete tempFire;
 				score->setScore(score->getScore() + 20);
 				deleteEnemy(window, enemys[i], i);
