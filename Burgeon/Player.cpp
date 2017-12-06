@@ -3,8 +3,10 @@
 
 
 Player::Player(sf::RenderWindow & window, sf::Vector2f pos):Sprite(getSprite()){
+	health = 50;
+
 	this->setPosition(pos);
-	this->scale({.5,.5});
+	setHealthSize();
 	this->setColor(sf::Color(255, 255, 255, 200));
 
 	this->setSpeed(1.75);
@@ -70,20 +72,31 @@ bool Player::controlShoot(sf::Event &event, std::vector<FireBall*> & fireBalls)
 	return shot;
 }
 
+int Player::getHealth()
+{
+	return health;
+}
+
 bool Player::isTooSmall()
 {
-	return (this->getScale().x < 0.35);
+	return (health <= 0);
 }
 
 bool Player::isTooBig()
 {
-	return (this->getScale().x > 2.5);
+	return (health > 300);
+}
+
+bool Player::isDead()
+{
+	return (health < 0);
 }
 
 
 void Player::isHit()
 {
-	this->scale(sf::Vector2f(.90,.90));
+	health = health - 20;
+	setHealthSize();
 
 	//add blue overlay on texture
 }
@@ -91,17 +104,24 @@ void Player::isHit()
 void Player::gotLog()
 {
 	if (!isTooBig()) {
-		this->scale(sf::Vector2f(1.05, 1.05));
+		health = health + 10;
+		setHealthSize();
 	}
 }
 
 bool Player::shoot(std::vector<FireBall*> & fireBalls, int direction)
 {
-	this->scale(sf::Vector2f(.95,.95));
+	health = health - 10;
+	setHealthSize();
 
 	FireBall *newFire = new FireBall(windowSize,{this->getPosition().x + ((this->getTextureRect().width*this->getScale().x) /2), this->getPosition().y + ((this->getTextureRect().height*this->getScale().y) /2)}, direction);
 
 	fireBalls.push_back(newFire);
 
 	return true;
+}
+
+void Player::setHealthSize()
+{
+	this->setScale(sf::Vector2f((health*.0025) + .35, (health*.0025) + .35));
 }
