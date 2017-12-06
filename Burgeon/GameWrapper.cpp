@@ -82,6 +82,8 @@ void GameWrapper::update(sf::RenderWindow & window)
 				delete tempFire;
 				deleteEnemy(window, enemys[i], i);
 				deathCount++;
+
+				score->setScore(score->getScore() + 20);//add score
 			}		
 		}
 		

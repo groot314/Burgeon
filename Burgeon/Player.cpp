@@ -95,7 +95,12 @@ bool Player::isDead()
 
 void Player::isHit()
 {
-	health = health - 20;
+	if (health < 30) {
+		health = 0;
+	}
+	else {
+		health = health - 30;
+	}
 	setHealthSize();
 
 	//add blue overlay on texture
